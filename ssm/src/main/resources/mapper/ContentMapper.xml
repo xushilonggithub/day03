@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.ContentMapper">
+ 	<select id="findList" parameterType="contentVo" resultType="contentVo">
+ 	SELECT content.*,contentcategory.categoryname AS cname 
+ 	FROM content,contentcategory 
+ 	<where>
+ 	content.contentCategoryId = contentcategory.contentCategoryId
+ 	<if test="contenttile !=null and contenttile!=''">
+ 		and content.contenttile like '%${contenttile}%'
+ 	</if>
+ 	<if test="contentcategoryid!=null and contentcategoryid!=0">
+ 		and contentcategory.contentcategoryid=#{contentcategoryid}
+ 	</if>
+ 	</where> 
+ 	</select>
+</mapper>
